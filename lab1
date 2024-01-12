@@ -1,0 +1,123 @@
+using System;
+
+class EnchantedForestStory
+{
+    static void Main()
+    {
+        // Variables to store user choices
+        int initialChoice;
+        int pathChoice;
+        int doorChoice;
+        int clearingChoice;
+        int labyrinthChoice;
+        int orbChoice;
+        int treeChoice;
+        int telekinesisChoice;
+        int doorKeyChoice;
+
+        // Initial scene
+        Console.WriteLine("Title: The Enchanted Forest\n");
+        Console.WriteLine("You find yourself at the edge of a mysterious enchanted forest. An owl greets you.\n");
+
+        // Offer initial choices
+        Console.WriteLine("Choices:");
+        Console.WriteLine("1. Enter the forest without hesitation.");
+        Console.WriteLine("2. Ask the owl for guidance before entering.");
+
+        // Get user's initial choice
+        initialChoice = GetUserChoice(2);
+
+        // Scene 1
+        if (initialChoice == 1)
+        {
+            Console.WriteLine("\nYou enter the forest bravely. The path splits into two.");
+
+            Console.WriteLine("Choices:");
+            Console.WriteLine("1. Head deeper into the dark woods.");
+            Console.WriteLine("2. Take the path to the clearing.");
+
+            // Get user's choice for Scene 1
+            pathChoice = GetUserChoice(2);
+
+            // Scene 2a: Deeper into the Dark Woods
+            if (pathChoice == 1)
+            {
+                Console.WriteLine("\nYou venture deeper into the dark woods and find a mysterious door.");
+
+                Console.WriteLine("Choices:");
+                Console.WriteLine("1. Open the door.");
+                Console.WriteLine("2. Ignore the door and continue forward.");
+
+                // Get user's choice for Scene 2a
+                doorChoice = GetUserChoice(2);
+
+                // Scene 3a: Behind the Door - The Labyrinth
+                if (doorChoice == 1)
+                {
+                    Console.WriteLine("\nBeyond the door lies a labyrinth with shifting walls.");
+
+                    Console.WriteLine("Choices:");
+                    Console.WriteLine("1. Go left.");
+                    Console.WriteLine("2. Go right.");
+
+                    // Get user's choice for Scene 3a
+                    labyrinthChoice = GetUserChoice(2);
+
+                    // Continue implementing the story based on user choices...
+                }
+                // Scene 3b: The Fountain's Magic
+                else
+                {
+                    Console.WriteLine("\nThe potion transforms you into a small creature. In this form, you find a hidden passage under the fountain.");
+
+                    Console.WriteLine("Choices:");
+                    Console.WriteLine("1. Explore the garden.");
+                    Console.WriteLine("2. Transform back and leave the clearing.");
+
+                    // Get user's choice for Scene 3b
+                    clearingChoice = GetUserChoice(2);
+
+                    // Continue implementing the story based on user choices...
+                }
+            }
+            // Scene 2b: Path to the Clearing
+            else
+            {
+                Console.WriteLine("\nThe clearing is bathed in soft moonlight. A fairy offers you a glowing potion.");
+
+                Console.WriteLine("Choices:");
+                Console.WriteLine("1. Drink the potion.");
+                Console.WriteLine("2. Decline the potion and explore the clearing.");
+
+                // Get user's choice for Scene 2b
+                clearingChoice = GetUserChoice(2);
+
+                // Continue implementing the story based on user choices...
+            }
+        }
+        // Implement additional scenes based on the user's initial choice...
+
+        Console.WriteLine("\nCongratulations! You have completed the enchanted forest story.");
+    }
+
+    // Function to get and validate user choices
+    static int GetUserChoice(int numberOfChoices)
+    {
+        int userChoice;
+        bool isValidChoice;
+
+        do
+        {
+            Console.Write("Enter your choice (1-" + numberOfChoices + "): ");
+            isValidChoice = int.TryParse(Console.ReadLine(), out userChoice);
+
+            if (!isValidChoice || userChoice < 1 || userChoice > numberOfChoices)
+            {
+                Console.WriteLine("Invalid choice. Please try again.");
+            }
+
+        } while (!isValidChoice || userChoice < 1 || userChoice > numberOfChoices);
+
+        return userChoice;
+    }
+}

@@ -1,0 +1,67 @@
+using System;
+
+class NumberGuessingGame
+{
+    static void Main(string[] args)
+    {
+        PlayGame();
+    }
+
+    static void PlayGame()
+    {
+        Random random = new Random();
+        int secretNumber = random.Next(0, 101);
+        while (true)
+        {
+            Console.Write("Guess a number\nEnter Your Choice: ");
+            string input = Console.ReadLine();
+
+            if (!int.TryParse(input, out int userGuess))
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                continue;
+            }
+
+            int difference = Math.Abs(secretNumber - userGuess);
+
+            if (userGuess == secretNumber)
+            {
+                Console.WriteLine("Congratulations! You guessed the number!");
+                break;
+            }
+            else if (difference > 20)
+            {
+                Console.WriteLine("Very far!");
+            }
+            else if (difference > 10)
+            {
+                Console.WriteLine("Far!");
+            }
+            else
+            {
+                Console.WriteLine("Close!");
+            }
+        }
+
+        while (true)
+        {
+            Console.Write("Play again?\n Type 1 if yes: \n type 2 in No: ");
+            string playAgain = Console.ReadLine().ToLower();
+
+            if (playAgain == "1")
+            {
+                PlayGame();
+                break;
+            }
+            else if (playAgain == "2")
+            {
+                Console.WriteLine("Thanks for playing!");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter 'yes' or 'no'.");
+            }
+        }
+    }
+}

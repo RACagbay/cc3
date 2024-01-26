@@ -1,0 +1,79 @@
+using System;
+
+class ATM
+{
+    static void Main()
+    {
+        string uname = "CC3Laboratory", userString = "";
+        int password = 12345, balance = 10000, pin = 123456, userInt = 0;
+
+        do
+        {
+            Console.Write("Enter Username: ");
+            userString = Console.ReadLine();
+            Console.Write("Enter Password: ");
+            userInt = Convert.ToInt32(Console.ReadLine());
+
+            if (userString != uname || userInt != password)
+                Console.WriteLine("Incorrect Login Credentials!");
+
+        } while (userString != uname || userInt != password);
+
+        Console.WriteLine("\nLogin Success!\n");
+
+        while (true)
+        {
+            Console.WriteLine(
+                "\n================================================================== \n" +
+                "\n [1] Check Balance" +
+                "\n [2] Withdraw Money" +
+                "\n [3] Deposit Money" +
+                "\n [4] Exit Application\n" +
+                "\n================================================================== \n");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Your balance is " + balance);
+                    break;
+                case 2:
+                    do
+                    {
+                        Console.Write("Enter your PIN: ");
+                        userInt = Convert.ToInt32(Console.ReadLine());
+                        if (userInt != pin)
+                            Console.WriteLine("Incorrect PIN!");
+                    } while (userInt != pin);
+
+                    Console.Write("Enter the amount to Withdraw: ");
+                    userInt = Convert.ToInt32(Console.ReadLine());
+
+                    if (userInt <= balance)
+                    {
+                        balance -= userInt;
+                        Console.WriteLine("Successfully Withdrawn!\nYour balance is now: " + balance);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nYour Balance is not enough!\n");
+                    }
+                    break;
+                case 3:
+                    Console.Write("Enter the amount to Deposit: ");
+                    userInt = Convert.ToInt32(Console.ReadLine());
+                    balance += userInt;
+                    Console.WriteLine("\nDeposit Successful!\nYour balance is now: " + balance);
+                    break;
+                case 4:
+                    Console.WriteLine("Exiting Application!");
+                    return;
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+}

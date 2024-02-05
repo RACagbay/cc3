@@ -1,0 +1,95 @@
+using System;
+
+public class Fan
+{
+    private int speed;
+    private string color;
+    private bool power;
+
+    public Fan()
+    {
+        speed = 1; // Default speed is slow
+        color = "black"; // Default color is black
+        power = false; // Default power is off
+    }
+
+    public Fan(int speed, string color, bool power)
+    {
+        this.speed = speed;
+        this.color = color;
+        this.power = power;
+    }
+
+    // Accessors (getters)
+    public int GetSpeed()
+    {
+        return speed;
+    }
+
+    public string GetColor()
+    {
+        return color;
+    }
+
+    public bool GetPower()
+    {
+        return power;
+    }
+
+    // Setters
+    public void SetSpeed(int speed)
+    {
+        this.speed = speed;
+    }
+
+    public void SetColor(string color)
+    {
+        this.color = color;
+    }
+
+    public void SetPower(bool power)
+    {
+        this.power = power;
+    }
+
+    public string DisplayAll()
+    {
+        if (power)
+        {
+            return $"Speed: {GetSpeedString()}, Color: {color}, Power: {power}";
+        }
+        else
+        {
+            return "Fan is off!";
+        }
+    }
+
+    private string GetSpeedString()
+    {
+        switch (speed)
+        {
+            case 1:
+                return "slow";
+            case 2:
+                return "medium";
+            case 3:
+                return "fast";
+            default:
+                return "unknown";
+        }
+    }
+}
+
+public class FanOff
+{
+    public static void Main()
+    {
+        Fan fan = new Fan(3, "red", true); // Fan turned on initially
+        Console.WriteLine("Fan (initial state): " + fan.DisplayAll());
+
+        // Turning the fan off
+        fan.SetPower(false);
+
+        Console.WriteLine("Fan (turned off): " + fan.DisplayAll());
+    }
+}

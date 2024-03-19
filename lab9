@@ -1,0 +1,111 @@
+using System;
+
+public class Shape
+{
+    protected int height;
+    protected int width;
+    protected string formula;
+
+    public Shape(int height, int width, string formula)
+    {
+        this.height = height;
+        this.width = width;
+        this.formula = formula;
+    }
+
+    public void PrintFormula()
+    {
+        Console.WriteLine(formula);
+    }
+}
+
+public class Circle : Shape
+{
+    private double pi = 3.1415;
+    private double radius;
+    public double Circumference { get; private set; }
+
+    public Circle(int height, int width, int radius) : base(height, width, "formula for circle circumference: 2 * pi * radius")
+    {
+        this.radius = radius;
+        this.Circumference = 2 * pi * radius;
+    }
+
+    public void PrintCircumference()
+    {
+        Console.WriteLine($"Circle Circumference: {Circumference}");
+    }
+}
+
+public class Triangle : Shape
+{
+    private double triArea;
+
+    public Triangle(int height, int width, double triArea) : base(height, width, "formula for triangle area: 1/2 * base * height")
+    {
+        this.triArea = triArea;
+    }
+
+    public void PrintTriangleArea()
+    {
+        Console.WriteLine($"Triangle Area: {triArea}");
+    }
+}
+
+public class Rectangle : Shape
+{
+    private int recPerimeter;
+
+    public Rectangle(int height, int width, int recPerimeter) : base(height, width, "formula for rectangle perimeter: 2 * (height + width)")
+    {
+        this.recPerimeter = recPerimeter;
+    }
+
+    public void PrintRectanglePerimeter()
+    {
+        Console.WriteLine($"Rectangle Perimeter: {recPerimeter}");
+    }
+}
+
+public class Square : Rectangle
+{
+    private int area;
+
+    public Square(int height, int width, int area) : base(height, width, 2 * (height + width))
+    {
+        this.area = area;
+    }
+
+    public void PrintSquareArea()
+    {
+        Console.WriteLine($"Square Area: {area}");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int height = 10;
+        int width = 10;
+        int radius = 3;
+        double triArea = 15;
+
+        Circle circle = new Circle(height, width, radius);
+        Triangle triangle = new Triangle(height, width, triArea);
+        Rectangle rectangle = new Rectangle(height, width, 2 * (height + width));
+        Square square = new Square(height, width, height * width);
+
+        Console.WriteLine("Formulas:");
+        circle.PrintFormula();
+        rectangle.PrintFormula();
+        square.PrintFormula();
+        triangle.PrintFormula();
+
+        Console.WriteLine("\nCalculated Values:");
+        circle.PrintCircumference();
+        rectangle.PrintRectanglePerimeter();
+        square.PrintSquareArea();
+        triangle.PrintTriangleArea();
+    }
+}
